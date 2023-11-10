@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      border: 10px dashed #ff0000;
+      padding: 20px;
+    }
+    .countdown {
+      font-size: 36px;
+      color: #333;
+      background-color: #fff;
+      border: 2px dashed #ff0000;
+      border-radius: 10px;
+      padding: 20px;
+      display: inline-block;
+      box-shadow: 2px 2px 4px #888;
+      margin: 20px;
+    }
+    #video-container {
+      border: 4px dashed #ff0000;
+      padding: 10px;
+      background-color: #fff;
+      position: relative;
+    }
+    #birthday-border {
+      z-index: 1;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 4px dashed #ff0000;
+      text-align: center;
+      padding: 10px;
+      font-size: 50px;
+      color: #ff0000;
+    }
+    #person-info {
+      text-align: center;
+      padding: 20px;
+      border: 4px dashed #ff0000;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 2px 2px 4px #888;
+      margin: 20px;
+    }
+    .image-with-border {
+      border: 2px solid #ff0000;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    #person-info h2 {
+      font-size: 24px;
+      color: #333;
+    }
+    #person-info h1 {
+      font-size: 30px;
+      color: grey;
+      font-family: 'Brush Script MT,cursive';
+    }
+    
+    #person-info h3 {
+      font-size: 35px;
+      color: orangered;
+    }
+    #person-info h5 {
+      font-size: 24px;
+      color: grey;
+    }
+    #person-info p {
+      font-size: 18px;
+      color: #333;
+      margin: 10px 0;
+      font-weight:50px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    #person-info strong {
+      font-size: 30px;
+      color: #ff0000;
+    }
+    .footer {
+      border-top: 2px dashed #ff0000;
+      color: #ff0000;
+      padding: 20px;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <div id="timer">00:00:00</div>
+  </div>
+  <div id="video-container">
+    <video controls width="200">
+      <source src="Video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="birthday-border"><i>Advance Happy Birthday!!!</i></div>
+  </div>
+  <div id="person-info">
+    <img src="Wish.png" alt="Person Image" width="1000" class="image-with-border">
+    <h2></h2>
+    <h1 style="color: green; font-size: 40px;"><i>From Vignesh S</i> <h1>
+    <p><strong>First wishes from my side</strong></p>
+    <h1><i>Only the Special people Peserves their Birthday wishes Early. Thanks for Being a Kindness Comrade...</i></h1>
+
+  </div>
+  <div class="footer" id="footerText">Your birthday is coming soon...</div>
+  <script>
+    window.onload = function () {
+      const countdownDate = new Date('December 9, 2023 00:00:00').getTime();
+      const timer = document.getElementById('timer');
+      const videoContainer = document.getElementById('video-container');
+      const personInfo = document.getElementById('person-info');
+      const footerText = document.getElementById('footerText');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeRemaining = countdownDate - now;
+        if (timeRemaining > 0) {
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+          timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s to Go`;
+        } else {
+          timer.innerHTML = "Happy birthday from Vignesh S!";
+          videoContainer.classList.remove('hidden');
+          personInfo.classList.remove('hidden');
+          footerText.innerHTML = "Wishing you a fantastic filled day and joyness!";
+          clearInterval(countdownInterval);
+        }
+      }
+
+      updateCountdown();
+      const countdownInterval = setInterval(updateCountdown, 1000);
+    };
+  </script>
+</body>
+</html>
